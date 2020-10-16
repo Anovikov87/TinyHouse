@@ -1,4 +1,4 @@
-import { Database } from "./../lib/types";
+import { Database, User, Listing, Booking } from "./../lib/types";
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { MongoClient } from "mongodb";
 
@@ -13,6 +13,8 @@ export const connectDatabase = async (): Promise<Database> => {
   const db = client.db("main");
 
   return {
-    listings: db.collection("test_listings"),
+    bookings: db.collection<Booking>("bookings"),
+    listings: db.collection<Listing>("listings"),
+    users: db.collection<User>("users"),
   };
 };
